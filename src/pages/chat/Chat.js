@@ -65,7 +65,7 @@ const Chat = () => {
     let options = [
         {
             id: "What are you doing?",
-            text: "¿Qué hacés?"
+            text: "¿Qué estás haciendo?"
         },
         // {
         //     id: "Send a meme",
@@ -73,7 +73,7 @@ const Chat = () => {
         // },
         {
             id: "Tell me about you",
-            text: "Contame sobre vos"
+            text: "Contame sobre vos..."
         },
     ];
 
