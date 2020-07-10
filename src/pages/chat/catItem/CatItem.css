@@ -1,0 +1,31 @@
+.cat-item-container {
+    display: flex;
+    width: auto;
+    align-items: center;
+}
+
+.cat-item-container img {
+    height: 50px;
+    /* border-radius: 15px; */
+}
+
+.cat-item-messages {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+}
+
+.cat-item-container label {
+    margin: 0 0 5px 10px;
+    font-size: 14px;
+    color: #ffffff;
+    /* background: #432b51; */
+    /* background: #093028; */
+    background: #237A57;
+    padding: 10px;
+    border-radius: 5px;
+    width: fit-content;
+    font-weight: normal;
+    box-sizing: border-box;
+}
