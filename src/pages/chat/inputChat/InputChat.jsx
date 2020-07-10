@@ -13,7 +13,7 @@ const InputChat = ({ sendMessage, getMeMessage, msg, chat }) => {
                 value={msg.msg || ''}
                 onChange={ (e) => getMeMessage(e.target.value) }
             />
-            <button type='submit' disabled={ chat.length >= 3 ? true : false }/>
+            <button type='submit' disabled={ !msg.msg || (chat.length >= 3 ? true : false) }/>
         </form>
     );
 };

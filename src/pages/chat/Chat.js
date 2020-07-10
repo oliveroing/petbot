@@ -58,6 +58,7 @@ const Chat = () => {
 
     function sendMessage(e) {
         e.preventDefault();
+        console.log(e);
         setChat([...chat, msg]);
     }
 
