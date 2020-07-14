@@ -13,19 +13,34 @@ const Chat = () => {
 
     let idCounter = 0;
 
+    let options = [
+        {
+            id: "doing",
+            text: "¿Qué estás haciendo?"
+        },
+        {
+            id: "about",
+            text: "Contame sobre vos..."
+        },
+    ];
+
+    let primerChat = [
+        {
+            id: 0,
+            emmiter: 'Cat',
+            msg: ['¡Hola!', '¿Cómo es tu nombre?']
+        }
+    ]
+
     const divRef = useRef(null);
 
     const [msg, setMsg] = useState({});
 
     const [openSelect, setOpenSelect] = useState(false);
 
-    const [chat, setChat] = useState([
-        {
-            id: 0,
-            emmiter: 'Cat',
-            msg: ['¡Hola!', '¿Cómo es tu nombre?']
-        }
-    ]);
+    const [chat, setChat] = useState(primerChat);
+
+    const [interactions, setInteractions] = useState([]);
 
     useEffect(() => {
         if (chat.length === 2) {
@@ -70,34 +85,18 @@ const Chat = () => {
         setChat([...chat, msg]);
     }
 
-    let options = [
-        {
-            id: "What are you doing?",
-            text: "¿Qué estás haciendo?"
-        },
-        // {
-        //     id: "Send a meme",
-        //     text: "Mandame un meme"
-        // },
-        {
-            id: "Tell me about you",
-            text: "Contame sobre vos..."
-        },
-    ];
-
-    const [interactions, setInteractions] = useState([]);
 
     function handleSelectedActions(value) {
         let result;
         switch (value) {
-            case 'What are you doing?':
+            case 'doing':
                 result = doing[Math.floor(Math.random() * doing.length)];
                 if (result) {
                     setInteractions([...interactions, result.msg])
                 }
                 break;
 
-            case 'Tell me about you':
+            case 'about':
                 result = aboutMe[Math.floor(Math.random() * aboutMe.length)];
                 if (result) {
                     setInteractions([...interactions, result.msg])
