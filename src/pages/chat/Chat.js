@@ -6,6 +6,7 @@ import InputChat from './inputChat/InputChat';
 import Select from './select/Select';
 import { doing, aboutMe } from '../../data/Actions';
 import Fade from 'react-reveal/Fade';
+import Bounce from 'react-reveal/Bounce';
 import { Fragment } from 'react';
 
 const Chat = () => {
@@ -35,14 +36,8 @@ const Chat = () => {
     }, [chat]);
 
     useEffect(() => {
-        // divRef.current.scrollIntoView({ behavior: 'smooth' });
         divRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
     });
-
-    // const scrollToBottom = () => {
-    //     const { messageList } = this.refs;
-    //     messageList.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
-    //   }
 
     function firstResponse(name) {
         let newChat = {
@@ -117,6 +112,9 @@ const Chat = () => {
     return (
         <div className='chatbot-chat-container'>
             <div className="chatbot-chat-content">
+                <Bounce top>
+                    <h1> Small Talk </h1>
+                </Bounce>
                 <div className="chatbot-chat">
                     <div className="chatbot-chat-container-body">
                         {chat.map((message, index) =>
