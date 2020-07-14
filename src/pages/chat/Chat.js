@@ -1,19 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './Chat.css';
-import CatItem from './catItem/CatItem';
-import UserItem from './userItem/UserItem';
 import InputChat from './inputChat/InputChat';
 import Select from './select/Select';
 import { doing, aboutMe } from '../../data/Actions';
-import Fade from 'react-reveal/Fade';
+import WelcomeChat from './welcomeChat/WelcomeChat';
+import Interactions from './interactions/Interactions';
 import Bounce from 'react-reveal/Bounce';
-import { Fragment } from 'react';
+import './Chat.css';
 
 const Chat = () => {
 
     let idCounter = 0;
 
-    let options = [
+    const options = [
         {
             id: "doing",
             text: "¿Qué estás haciendo?"
@@ -24,7 +22,7 @@ const Chat = () => {
         },
     ];
 
-    let primerChat = [
+    const primerChat = [
         {
             id: 0,
             emmiter: 'Cat',
@@ -81,7 +79,6 @@ const Chat = () => {
 
     function sendMessage(e) {
         e.preventDefault();
-        console.log(e);
         setChat([...chat, msg]);
     }
 
@@ -92,14 +89,14 @@ const Chat = () => {
             case 'doing':
                 result = doing[Math.floor(Math.random() * doing.length)];
                 if (result) {
-                    setInteractions([...interactions, result.msg])
+                    setInteractions([...interactions, result.msg]);
                 }
                 break;
 
             case 'about':
                 result = aboutMe[Math.floor(Math.random() * aboutMe.length)];
                 if (result) {
-                    setInteractions([...interactions, result.msg])
+                    setInteractions([...interactions, result.msg]);
                 }
                 break;
 
@@ -116,35 +113,23 @@ const Chat = () => {
                 </Bounce>
                 <div className="chatbot-chat">
                     <div className="chatbot-chat-container-body">
-                        {chat.map((message, index) =>
-                            message.emmiter === 'Cat' ?
-                                <CatItem
-                                    key={message.id}
-                                    text={message.msg} />
-                                :
-                                <UserItem
-                                    key={message.id}
-                                    text={message.msg} />
-                        )}
+                        {/* Inicio de charla */}
+                        <WelcomeChat chat={chat} />
+                        {/* Opciones de Select */}
                         {openSelect &&
-                            <Fade right>
-                                <Select
-                                    handleSelectedActions={handleSelectedActions}
-                                    options={options} />
-                            </Fade>
+                            <Select
+                                handleSelectedActions={handleSelectedActions}
+                                options={options} />
                         }
+                        {/* Respuestas de select */}
                         {
                             interactions.length > 0 && interactions.map((interaction, index) =>
-                                <Fragment key={index}>
-                                    <Fade left>
-                                        <CatItem key={ImageBitmapRenderingContext} text={interaction}> </CatItem>
-                                    </Fade>
-                                    <Fade right>
-                                        <Select
-                                            handleSelectedActions={handleSelectedActions}
-                                            options={options} />
-                                    </Fade>
-                                </Fragment>
+                                <Interactions
+                                    key={index} 
+                                    interaction={interaction}
+                                    index={index}
+                                    handleSelectedActions={handleSelectedActions}
+                                    options={options} />
                             )
                         }
                         <div ref={divRef}></div>

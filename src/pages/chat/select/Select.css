@@ -1,13 +1,23 @@
 .selector-container {
-    width: 100%;
+    width: 100%; 
     height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.selector-container-options {
+    background: #0d98c7;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px 0 10px 10px;
+    margin-right: 10px;
 }
 
 .selector-content {
     width: 80%;
     height: fit-content;
     /* background: #e08b97; */
-    background: #0d98c7;;
     border-radius: 5px;
     box-sizing: border-box;
     display: flex;
@@ -38,8 +48,23 @@
     background: #06526b;
 }
 
+.selector-container img {
+    height: 30px;
+}
+
+div[disabled] {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
 @media only screen and (min-width: 768px) {
+
+    .selector-container-options {
+        width: 100%;
+    }
+
     .selector-options label {
         width: 97.5%;
     }
+
 }
