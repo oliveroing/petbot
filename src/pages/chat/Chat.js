@@ -6,10 +6,13 @@ import InputChat from './inputChat/InputChat';
 import Select from './select/Select';
 import { doing, aboutMe } from '../../data/Actions';
 import Fade from 'react-reveal/Fade';
+import { Fragment } from 'react';
 
 const Chat = () => {
 
     let idCounter = 0;
+
+    const divRef = useRef(null);
 
     const [msg, setMsg] = useState({});
 
@@ -31,6 +34,16 @@ const Chat = () => {
         }
     }, [chat]);
 
+    useEffect(() => {
+        // divRef.current.scrollIntoView({ behavior: 'smooth' });
+        divRef.current.scrollIntoView({ block: 'end', behavior: 'smooth' });
+    });
+
+    // const scrollToBottom = () => {
+    //     const { messageList } = this.refs;
+    //     messageList.scrollIntoView({behavior: "smooth", block: "end", inline: "nearest"});
+    //   }
+
     function firstResponse(name) {
         let newChat = {
             id: idCounter + 2,
@@ -38,7 +51,7 @@ const Chat = () => {
             msg: [
                 '¡Mucho gusto, ' + name + '!',
                 'Mi nombre es Covid19, soy un virus en expansión',
-                '¡Estoy creciendo día a día gracias a las negligencias de las personas!',
+                '¡Estoy creciendo día a día gracias a la negligencia de las personas!',
                 '¡Hazme una pregunta y con gusto responderé...'
             ]
         }
@@ -109,11 +122,11 @@ const Chat = () => {
                         {chat.map((message, index) =>
                             message.emmiter === 'Cat' ?
                                 <CatItem
-                                    key={index}
+                                    key={message.id}
                                     text={message.msg} />
                                 :
                                 <UserItem
-                                    key={index}
+                                    key={message.id}
                                     text={message.msg} />
                         )}
                         {openSelect &&
@@ -125,7 +138,7 @@ const Chat = () => {
                         }
                         {
                             interactions.length > 0 && interactions.map((interaction, index) =>
-                                <>
+                                <Fragment key={index}>
                                     <Fade left>
                                         <CatItem key={ImageBitmapRenderingContext} text={interaction}> </CatItem>
                                     </Fade>
@@ -134,9 +147,10 @@ const Chat = () => {
                                             handleSelectedActions={handleSelectedActions}
                                             options={options} />
                                     </Fade>
-                                </>
+                                </Fragment>
                             )
                         }
+                        <div ref={divRef}></div>
                     </div>
                     <div className="chatbot-chat-container-input">
                         <InputChat
