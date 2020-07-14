@@ -10,8 +10,8 @@ const Select = ({ options, handleSelectedActions }) => {
     return (
         <div className='selector-content'>
             <div className='selector-container'>
-                <div className='selector-container-options'>
-                    <Fade right>
+                <Fade right>
+                    <div className='selector-container-options'>
                         <div className='selector-options' disabled={disabled}>
                             {options.map(op =>
                                 <div
@@ -25,8 +25,8 @@ const Select = ({ options, handleSelectedActions }) => {
                                 </div>
                             )}
                         </div>
-                    </Fade>
-                </div>
+                    </div>
+                </Fade>
                 <div className='selector-container-user'>
                     <img src={user} alt='user-avatar' />
                 </div>
