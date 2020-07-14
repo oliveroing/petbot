@@ -113,7 +113,7 @@ const Chat = () => {
         <div className='chatbot-chat-container'>
             <div className="chatbot-chat-content">
                 <Bounce top>
-                    <h1> Small Talk </h1>
+                    <h1> ¡Vamos a conocernos! </h1>
                 </Bounce>
                 <div className="chatbot-chat">
                     <div className="chatbot-chat-container-body">
